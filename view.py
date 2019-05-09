@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from PyQt5.QtWidgets import QWidget, QGridLayout, QLabel, QLineEdit, QPushButton, QComboBox, QTableWidget
+from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5.QtCore import Qt
 
 
@@ -54,3 +55,8 @@ class View(QWidget):
         self.mainLayout.addWidget(self.btnAdd, 0, 5)
 
         self.mainLayout.addWidget(self.tblCosts, 1, 0, 1, 3)
+
+    def setTblCosts(self, dataName, dataCost):
+        rowPos = self.tblCosts.rowCount()
+        self.tblCosts.setItem(rowPos, 0, QTableWidgetItem(dataName))
+        self.tblCosts.setItem(rowPos, 1, QTableWidgetItem(dataCost))

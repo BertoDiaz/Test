@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from view import View
+from model import Model
 from PyQt5.QtWidgets import QApplication
 import sys
 
@@ -24,6 +25,13 @@ class Controller:
 
     def __init__(self):
         self.view = View()
+        self.model = Model('database.csv', None)
+
+        if self.model.getLastID() > 0:
+            """Poner costes en tabla."""
+            allData = self.model.getAll()
+            for data in allData:
+                self.view.setTblCosts(data[0], data[1])
 
         self.view.createFormGroup()
 
